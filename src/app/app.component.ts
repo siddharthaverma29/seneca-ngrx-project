@@ -13,6 +13,7 @@ import {
   NewsApi,
   Sorting,
   fetchNews,
+  doPagination,
   sortNewsByDate,
   selectFeatureError,
   selectFeatureLoading,
@@ -54,11 +55,13 @@ export class AppComponent implements OnInit {
     );
   }
 
+  public doPagination(selectRef: HTMLSelectElement) {
+    if (selectRef.value === 'all') return;
+    this.store.dispatch(doPagination({ page: +selectRef.value }));
+  }
+
   @HostListener('window:scroll')
   public checkScroll() {
-    // window의 scroll top
-    // Both window.pageYOffset and document.documentElement.scrollTop returns the same result in all the cases. window.pageYOffset is not supported below IE 9.
-
     const scrollPosition =
       window.pageYOffset ||
       document.documentElement.scrollTop ||

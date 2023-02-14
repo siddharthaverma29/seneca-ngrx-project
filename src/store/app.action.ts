@@ -22,4 +22,7 @@ export const sortNewsByDate = createAction(
   ACTIONS.sortNewsByDate,
   props<{ mode: Sorting }>()
 );
-export const doPagination = createAction(ACTIONS.pagination);
+export const doPagination = createAction(
+  ACTIONS.pagination,
+  props<{ page: number }>()
+);

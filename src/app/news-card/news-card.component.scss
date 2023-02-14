@@ -49,4 +49,10 @@
   color: darkcyan;
   padding: 12px;
   border-radius: 12px;
+  background-color: transparent;
+  &:hover {
+    background-color: darkcyan;
+    color: white;
+    cursor: pointer;
+  }
 }

@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  doPagination,
   fetchNews,
   fetchNewsFailure,
   fetchNewsSuccess,
@@ -21,6 +22,12 @@ export const newsReducer = createReducer(
     return {
       ...state,
       isLoading: true,
+    };
+  }),
+  on(doPagination, (state, action) => {
+    return {
+      ...state,
+      paginaton: action.page,
     };
   }),
   on(fetchNewsSuccess, (state, action) => {
