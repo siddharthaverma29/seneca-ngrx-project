@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
 import { fetchNews, fetchNewsFailure, fetchNewsSuccess } from './app.action';
-import { LiveNewsApiService } from 'src/app/services/live-news.service';
+import { LiveNewsApiService } from '../app/services';
 
 @Injectable()
 export class NewsEffects {
