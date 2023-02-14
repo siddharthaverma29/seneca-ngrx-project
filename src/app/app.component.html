@@ -1,0 +1,25 @@
+<header>
+  <nav>
+    <ul class="nav_ul">
+      <li><img width="20" src="assets/apple_logo.png" /></li>
+      <li>Total Records {{ (news$ | async)?.length }}</li>
+      <li>
+        <span><small>Sort (Publish)</small></span>
+        <button (click)="onToggleSorting()" #buttonRef>
+          {{
+            (sortingMode$ | async) === "ascending" ? "Descending" : "Ascending"
+          }}
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main [style.marginTop]="'100px'">
+  <app-news-card
+    [news$]="news$"
+    [isLoading$]="isLoading$"
+    [errorMessage$]="errorMessage$"
+  ></app-news-card>
+</main>
+<button class="scrollTop" *ngIf="isShow" (click)="gotoTop()">👆</button>

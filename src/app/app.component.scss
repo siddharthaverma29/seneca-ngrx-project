@@ -1,0 +1,41 @@
+header {
+  background-color: black;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      color: aqua;
+      text-decoration: underline;
+    }
+  }
+}
+
+.nav_ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  li {
+    list-style: none;
+  }
+}
+
+button.scrollTop {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  font-size: 40px;
+  text-align: center;
+  border-radius: 20px;
+  outline: none;
+  background-color: black;
+}

@@ -1,0 +1,37 @@
+<div class="newsContainer" *ngIf="isLoading$ | async"><h1>Loading ...</h1></div>
+<div
+  class="newsContainer"
+  *ngIf="(errorMessage$ | async) && !(isLoading$ | async)"
+>
+  <h1>{{ errorMessage$ | async }}</h1>
+</div>
+<div
+  class="newsContainer"
+  *ngIf="!(errorMessage$ | async) && !(isLoading$ | async)"
+>
+  <h1>Your Apple News Station 📰</h1>
+  <div
+    *ngFor="let nw of news$ | async; let i = index"
+    class="newsContainer__newsCard"
+  >
+    <div>
+      <h3>🎙️ #{{ i + 1 }}</h3>
+      <p class="newsContainer__newsCard-description">
+        <img width="140" [src]="nw.urlToImage" [alt]="'N/A'" />
+        <span>
+          <h3>{{ nw.title }}</h3>
+          {{ nw.description }}</span
+        >
+      </p>
+      <h4>
+        Published @ {{ nw.publishedAt | date }} | Author @{{
+          nw.author ? nw.author : "Unknown"
+        }}
+      </h4>
+
+      <button class="content_button" (click)="readFullContent(nw.content)">
+        Read Entire Content
+      </button>
+    </div>
+  </div>
+</div>
