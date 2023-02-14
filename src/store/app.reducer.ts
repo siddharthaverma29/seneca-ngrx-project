@@ -12,6 +12,7 @@ export const intialState: NEWS = {
   error: null,
   data: [],
   sortMode: 'ascending',
+  paginaton: 10,
 };
 
 export const newsReducer = createReducer(

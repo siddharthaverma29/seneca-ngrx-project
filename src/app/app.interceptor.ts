@@ -20,6 +20,8 @@ export class AppInterceptor implements HttpInterceptor {
       params: new HttpParams()
         .set('q', 'Apple')
         .set('apiKey', 'f78e7ecf8e4f4e1c88039d34cacbf3d0'),
+      // .set('sortBy', 'popularity')
+      // .set('pageSize', 10),
     });
     return next.handle(modifiedReq);
   }

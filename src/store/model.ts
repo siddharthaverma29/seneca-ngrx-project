@@ -3,6 +3,7 @@ export interface NEWS {
   isLoading: boolean;
   error: any;
   sortMode: Sorting;
+  paginaton: number;
 }
 
 export interface NewsApi {

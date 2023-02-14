@@ -27,3 +27,7 @@ export const selectFeatureSortMode = createSelector(
   selectFeature,
   (state: NEWS) => state.sortMode
 );
+export const selectFeaturePage = createSelector(
+  selectFeature,
+  (state: NEWS) => state.paginaton
+);

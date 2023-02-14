@@ -1,11 +1,19 @@
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 
-import { fetchNews, fetchNewsFailure, fetchNewsSuccess } from './app.action';
+import {
+  doPagination,
+  fetchNews,
+  fetchNewsFailure,
+  fetchNewsSuccess,
+} from './app.action';
 import { LiveNewsApiService } from '../app/services';
+import { AppState } from './app.state';
+import { select, Store } from '@ngrx/store';
+import { selectFeaturePage } from './app.selector';
 
 @Injectable()
 export class NewsEffects {
@@ -24,5 +32,26 @@ export class NewsEffects {
         ),
     { dispatch: true }
   );
-  constructor(private actions$: Actions, private newsApi: LiveNewsApiService) {}
+
+  doPagination$ = createEffect(
+    () =>
+      this.actions$
+        .pipe(
+          ofType(doPagination),
+          withLatestFrom(this.store.pipe(select(selectFeaturePage))),
+          switchMap(([_d, page]) => this.newsApi.paginateNewsApi(page))
+        )
+        .pipe(map((news) => fetchNewsSuccess({ news })))
+        .pipe(
+          catchError((error: HttpErrorResponse) => {
+            return of(fetchNewsFailure({ errorMessage: error.message }));
+          })
+        ),
+    { dispatch: true }
+  );
+  constructor(
+    private actions$: Actions,
+    private newsApi: LiveNewsApiService,
+    private store: Store<AppState>
+  ) {}
 }

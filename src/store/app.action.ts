@@ -6,6 +6,7 @@ const ACTIONS = {
   fetchNewsSuccess: '[News] Fetch News Success',
   fetchNewsFailure: '[News] Fetch News Failure',
   sortNewsByDate: '[News] Sort News By Date',
+  pagination: '[News] Pagination',
 };
 
 export const fetchNews = createAction(ACTIONS.fetchNews);
@@ -21,3 +22,4 @@ export const sortNewsByDate = createAction(
   ACTIONS.sortNewsByDate,
   props<{ mode: Sorting }>()
 );
+export const doPagination = createAction(ACTIONS.pagination);
